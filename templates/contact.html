@@ -1,0 +1,126 @@
+{% extends "layout.html" %}
+
+{% load staticfiles %}
+{% block content %}
+
+	<!-- Page info -->
+	<div class="page-top-info">
+		<div class="container">
+			<h4>Contact</h4>
+			<div class="site-pagination">
+				<a href="{% url 'home' %}">Home</a> /
+				<a href="">Contact</a>
+			</div>
+		</div>
+	</div>
+	<!-- Page info end -->
+
+
+	<!-- Contact section -->
+	<section class="contact-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 contact-info">
+					<h3>Get in touch</h3>
+					<p>214, Millennium Textile Market 2, Anjana Bridge, New Textile Market, Surat.</p>
+					<p>+91 7698518979</p>
+					<p>+91 7698518980</p>
+					<p>taptifashion@gmail.com</p>
+					<div class="contact-social">
+						<a href="#"><i class="fa fa-google"></i></a>
+						<a href="#"><i class="fa fa-facebook"></i></a>
+						<a href="#"><i class="fa fa-twitter"></i></a>
+					</div>
+					<form class="contact-form">
+						<input type="text" placeholder="Your name">
+						<input type="text" placeholder="Your e-mail">
+						<input type="text" placeholder="Subject">
+						<textarea placeholder="Message"></textarea>
+						<button class="site-btn">SEND NOW</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="map">
+			<iframe width="600" height="500" id="gmap_canvas"
+				src="https://maps.google.com/maps?q=New%20Textile%20Market&t=&z=15&ie=UTF8&iwloc=&output=embed" style="border:0" allowfullscreen></iframe>
+		</div>
+	</section>
+	<!-- Contact section end -->
+
+
+	<!-- Related product section -->
+	<section class="related-product-section spad">
+		<div class="container">
+			<div class="section-title">
+				<h2>Your Favorites</h2>
+			</div>
+			<div class="row">
+				{% for item in items %}
+				<div class="col-lg-3 col-sm-6">
+					<div class="product-item">
+						<div class="pi-pic">
+							{% if item.newly_added %}
+							<div class="tag-new">New</div>
+							{% endif %}
+							<img src="../media/{{ item.image }}" alt="{{ item.name }}">
+						</div>
+						<div class="pi-text">
+							<p>{{ item.name }}</p>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+				{% comment %}
+				<div class="col-lg-3 col-sm-6">
+					<div class="product-item">
+						<div class="pi-pic">
+							<img src="{% static 'img/product/5.jpg' %}" alt="">
+							<div class="pi-links">
+								<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
+								<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
+							</div>
+						</div>
+						<div class="pi-text">
+							<h6>$35,00</h6>
+							<p>Flamboyant Pink Top </p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-sm-6">
+					<div class="product-item">
+						<div class="pi-pic">
+							<img src="{% static 'img/product/9.jpg' %}" alt="">
+							<div class="pi-links">
+								<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
+								<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
+							</div>
+						</div>
+						<div class="pi-text">
+							<h6>$35,00</h6>
+							<p>Flamboyant Pink Top </p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-sm-6">
+					<div class="product-item">
+						<div class="pi-pic">
+							<img src="{% static 'img/product/1.jpg' %}" alt="">
+							<div class="pi-links">
+								<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
+								<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
+							</div>
+						</div>
+						<div class="pi-text">
+							<h6>$35,00</h6>
+							<p>Flamboyant Pink Top </p>
+						</div>
+					</div>
+				</div>
+				{% endcomment %}
+			</div>
+		</div>
+	</section>
+	<!-- Related product section end -->
+
+{% endblock content %}

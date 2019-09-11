@@ -1,0 +1,245 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    {% if title %}
+        <title>Tapti Fashion | {{ title }}</title>
+        <meta charset="UTF-8">
+        <meta name="description" content=" Tapti Fashion | {{ title }}">
+    {% else %}
+        <title>Tapti Fashion | {{ title }}</title>
+        <meta charset="UTF-8">
+        <meta name="description" content=" Tapti Fashion | {{ title }}">
+    {% endif %}
+	<meta name="keywords" content="Tapti, eCommerce, creative, html">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Favicon -->
+	<!-- <link href="{% static 'img/favicon.ico' %}" rel="shortcut icon"/> -->
+
+	<!-- Google Font -->
+	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,300i,400,400i,700,700i" rel="stylesheet">
+
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+	<!-- Bootstrap core CSS -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Material Design Bootstrap -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.7/css/mdb.min.css" rel="stylesheet">
+
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}"/>
+	<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}"/>
+	<link rel="stylesheet" href="{% static 'css/flaticon.css' %}"/>
+	<link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}"/>
+	<link rel="stylesheet" href="{% static 'css/jquery-ui.min.css' %}"/>
+	<link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}"/>
+	<link rel="stylesheet" href="{% static 'css/animate.css' %}"/>
+	<link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+
+
+	<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+
+</head>
+<body>
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
+
+	<!-- Header section -->
+	<header class="header-section">
+		<div class="header-top">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-4 text-center text-lg-left">
+						<!-- logo -->
+						<a href="#" class="site-logo">
+							<img src="{% static 'img/IMG-20190705-WA0002.png' %}" alt="">
+						</a>
+					</div>
+					<div class="col-xl-7 col-lg-5">
+						<form class="header-search-form">
+							<input type="text" placeholder="Search on tapti ....">
+							<button><i class="flaticon-search"></i></button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<nav class="main-navbar">
+			<div class="container">
+				<!-- menu -->
+				<ul class="main-menu">
+					<li><a href="{% url 'home' %}"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
+					<!-- <li><a href="#">Jewelry
+						<span class="new">New</span>
+					</a></li> -->
+					<li><a href="#">Categories<span class="new">New</span></a>
+						<ul class="sub-menu">
+							{% for category in categories %}
+							<li><a href="{% url 'category-detail' id=category.id %}">{{ category.name }}
+								{% if category.newly_added %}
+								<span class="sub-new">New</span>
+								{% endif %}
+							</a></li>
+							{% endfor %}
+						</ul>
+					</li>
+					<li><a href="{% url 'about-us' %}">About Us</a></li>
+					<li><a href="#"><i class="fa fa-phone" aria-hidden="true"></i> Inquiry Us</a></li>
+					<!-- <li><a href="#">Pages</a>
+						<ul class="sub-menu">
+							<li><a href="./product.html">Product Page</a></li>
+							<li><a href="./category.html">Category Page</a></li>
+							<li><a href="./cart.html">Cart Page</a></li>
+							<li><a href="./checkout.html">Checkout Page</a></li>
+							<li><a href="./contact.html">Contact Page</a></li>
+						</ul>
+					</li> -->
+					<li><a href="{% url 'contact-us' %}"><i class="fa fa-envelope-o" aria-hidden="true"></i> Contact Us</a></li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+    <!-- Header section end -->
+    {% block content %}{% endblock %}
+    <!-- Footer section -->
+	<section class="footer-section">
+		<div class="container">
+			<div class="footer-logo text-center">
+				<a href="#"><img src="{% static 'img/IMG-GREY.png' %}" alt=""></a>
+			</div>
+			<div class="row">
+				<div class="col-lg-6 col-sm-12">
+					<div class="footer-widget about-widget">
+						<h2>Mission</h2>
+						<p>We believe in the growth of each member associated with us & will contribute to nation in generating employment, will also provide happiness of dressing to all segments of the society.</p>
+						<img src="{% static 'img/cards.png' %}" alt="">
+					</div>
+				</div>
+				<!-- <div class="col-lg-3 col-sm-6">
+					<div class="footer-widget about-widget">
+						<h2>Questions</h2>
+						<ul>
+							<li><a href="">About Us</a></li>
+							<li><a href="">Track Orders</a></li>
+							<li><a href="">Returns</a></li>
+							<li><a href="">Jobs</a></li>
+							<li><a href="">Shipping</a></li>
+							<li><a href="">Blog</a></li>
+						</ul>
+						<ul>
+							<li><a href="">Partners</a></li>
+							<li><a href="">Bloggers</a></li>
+							<li><a href="">Support</a></li>
+							<li><a href="">Terms of Use</a></li>
+							<li><a href="">Press</a></li>
+						</ul>
+					</div>
+				</div> -->
+				<!-- <div class="col-lg-3 col-sm-6">
+					<div class="footer-widget about-widget">
+						<h2>Questions</h2>
+						<div class="fw-latest-post-widget">
+							<div class="lp-item">
+								<div class="lp-thumb set-bg" data-setbg="{% static 'img/blog-thumbs/1.jpg' %}"></div>
+								<div class="lp-content">
+									<h6>what shoes to wear</h6>
+									<span>Oct 21, 2018</span>
+									<a href="#" class="readmore">Read More</a>
+								</div>
+							</div>
+							<div class="lp-item">
+								<div class="lp-thumb set-bg" data-setbg="{% static 'img/blog-thumbs/2.jpg' %}"></div>
+								<div class="lp-content">
+									<h6>trends this year</h6>
+									<span>Oct 21, 2018</span>
+									<a href="#" class="readmore">Read More</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div> -->
+				<div class="col-lg-6 col-sm-12">
+					<div class="footer-widget contact-widget">
+						<h2>Company Info.</h2>
+						<div class="row">
+							<div class="con-info col-lg-6 col-sm-12">
+								<span>Owner.</span><br>
+								<p>Harihar G. Pal</p>
+							</div>
+							<div class="con-info col-lg-6 col-sm-12">
+								<span>Company.</span><br>
+								<p>Tapti Fashion Pvt. Ltd. </p>
+							</div>
+							<div class="con-info col-lg-6 col-sm-12">
+								<span>Address.</span><br>
+								<p>214, Millennium Textile Market 2, Anjana Bridge, New Textile Market, Surat. </p>
+							</div>
+							<div class="con-info col-lg-6 col-sm-12">
+								<span>Office Contact Number.</span><br>
+								<p>+91 7698518980</p>
+							</div>
+							<div class="con-info col-lg-6 col-sm-12">
+								<span>Sales Department Contact Number.</span><br>
+								<p>+91 7698518979</p>
+							</div>
+							<div class="con-info col-lg-6 col-sm-12">
+								<span>Email.</span><br>
+								<p>taptifashion@gmail.com</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="social-links-warp">
+			<div class="container">
+				<div class="social-links row" style="text-align: center">
+					<div class="col-sm-4">
+						<a href="https://www.instagram.com/tapti_fashion/" class="instagram"><i class="fa fa-instagram"></i><span>instagram</span></a>
+					</div>
+					<div class="col-sm-4">
+						<a href="" class="facebook"><i class="fa fa-facebook"></i><span>facebook</span></a>
+					</div>
+					<div class="col-sm-4">
+						<a href="" class="twitter"><i class="fa fa-twitter"></i><span>twitter</span></a>
+					</div>
+				</div>
+
+				<p class="text-white text-center mt-5">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="#" target="_blank">Rohan Baddi</a></p>
+
+			</div>
+		</div>
+	</section>
+	<!-- Footer section end -->
+
+
+
+	<!--====== Javascripts & Jquery ======-->
+	<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+	<!-- Bootstrap tooltips -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+	<!-- Bootstrap core JavaScript -->
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<!-- MDB core JavaScript -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.7/js/mdb.min.js"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'js/jquery.slicknav.min.js' %}"></script>
+	<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+	<script src="{% static 'js/jquery.nicescroll.min.js' %}"></script>
+	<script src="{% static 'js/jquery.zoom.min.js' %}"></script>
+	<script src="{% static 'js/jquery-ui.min.js' %}"></script>
+	<script src="{% static 'js/main.js' %}"></script>
+	<script type="text/javascript">
+		$('img').bind('contextmenu', function (e) {
+				return false;
+			});
+	</script>
+
+	</body>
+</html>
