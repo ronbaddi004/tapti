@@ -27,16 +27,18 @@
 					<p>+91 7698518980</p>
 					<p>taptifashion@gmail.com</p>
 					<div class="contact-social">
-						<a href="#"><i class="fa fa-google"></i></a>
+						<a href="https://www.instagram.com/tapti_fashion/"><i class="fa fa-instagram"></i></a>
 						<a href="#"><i class="fa fa-facebook"></i></a>
 						<a href="#"><i class="fa fa-twitter"></i></a>
 					</div>
-					<form class="contact-form">
-						<input type="text" placeholder="Your name">
-						<input type="text" placeholder="Your e-mail">
-						<input type="text" placeholder="Subject">
-						<textarea placeholder="Message"></textarea>
-						<button class="site-btn">SEND NOW</button>
+					<form method="POST" class="contact-form">
+						{% csrf_token %}
+						<input type="text" name="name" maxlength="100" required placeholder="Your name">
+						<input type="text" name="email_id" required placeholder="Your e-mail">
+						<input type="text" name="mobile_number" maxlength="17" required placeholder="Mobile Number">
+						<input type="text" name="subject" maxlength="100" required placeholder="Subject">
+						<textarea name="message" maxlength="1000" placeholder="Message"></textarea>
+						<button type="submit" class="site-btn">SEND NOW</button>
 					</form>
 				</div>
 			</div>
@@ -71,53 +73,6 @@
 					</div>
 				</div>
 				{% endfor %}
-				{% comment %}
-				<div class="col-lg-3 col-sm-6">
-					<div class="product-item">
-						<div class="pi-pic">
-							<img src="{% static 'img/product/5.jpg' %}" alt="">
-							<div class="pi-links">
-								<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-								<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-							</div>
-						</div>
-						<div class="pi-text">
-							<h6>$35,00</h6>
-							<p>Flamboyant Pink Top </p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-sm-6">
-					<div class="product-item">
-						<div class="pi-pic">
-							<img src="{% static 'img/product/9.jpg' %}" alt="">
-							<div class="pi-links">
-								<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-								<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-							</div>
-						</div>
-						<div class="pi-text">
-							<h6>$35,00</h6>
-							<p>Flamboyant Pink Top </p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-sm-6">
-					<div class="product-item">
-						<div class="pi-pic">
-							<img src="{% static 'img/product/1.jpg' %}" alt="">
-							<div class="pi-links">
-								<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-								<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-							</div>
-						</div>
-						<div class="pi-text">
-							<h6>$35,00</h6>
-							<p>Flamboyant Pink Top </p>
-						</div>
-					</div>
-				</div>
-				{% endcomment %}
 			</div>
 		</div>
 	</section>

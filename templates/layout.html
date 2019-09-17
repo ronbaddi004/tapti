@@ -35,12 +35,34 @@
 	<link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}"/>
 	<link rel="stylesheet" href="{% static 'css/animate.css' %}"/>
 	<link rel="stylesheet" href="{% static 'css/style.css' %}"/>
-
-
-	<!--[if lt IE 9]>
-		  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-	<![endif]-->
+	<!-- <link rel="stylesheet" href="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/css/compiled-4.8.9.min.css"> -->
+	<style type="text/css">
+		@-webkit-keyframes chartjs-render-animation {
+			from {
+				opacity: 0.99
+			}
+	
+			to {
+				opacity: 1
+			}
+		}
+	
+		@keyframes chartjs-render-animation {
+			from {
+				opacity: 0.99
+			}
+	
+			to {
+				opacity: 1
+			}
+		}
+	
+		.chartjs-render-monitor {
+			-webkit-animation: chartjs-render-animation 0.001s;
+			animation: chartjs-render-animation 0.001s;
+		}
+	</style>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
 
 </head>
 <body>
@@ -61,8 +83,8 @@
 						</a>
 					</div>
 					<div class="col-xl-7 col-lg-5">
-						<form class="header-search-form">
-							<input type="text" placeholder="Search on tapti ....">
+						<form method="GET" action="{% url 'items-list' %}" class="header-search-form">
+							<input type="text" name="q" placeholder="Search on tapti ....">
 							<button><i class="flaticon-search"></i></button>
 						</form>
 					</div>
@@ -74,9 +96,6 @@
 				<!-- menu -->
 				<ul class="main-menu">
 					<li><a href="{% url 'home' %}"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
-					<!-- <li><a href="#">Jewelry
-						<span class="new">New</span>
-					</a></li> -->
 					<li><a href="#">Categories<span class="new">New</span></a>
 						<ul class="sub-menu">
 							{% for category in categories %}
@@ -89,23 +108,68 @@
 						</ul>
 					</li>
 					<li><a href="{% url 'about-us' %}">About Us</a></li>
-					<li><a href="#"><i class="fa fa-phone" aria-hidden="true"></i> Inquiry Us</a></li>
-					<!-- <li><a href="#">Pages</a>
-						<ul class="sub-menu">
-							<li><a href="./product.html">Product Page</a></li>
-							<li><a href="./category.html">Category Page</a></li>
-							<li><a href="./cart.html">Cart Page</a></li>
-							<li><a href="./checkout.html">Checkout Page</a></li>
-							<li><a href="./contact.html">Contact Page</a></li>
-						</ul>
-					</li> -->
+					<li><a href="" data-toggle="modal" data-target="#modalContactForm"><i class="fa fa-phone" aria-hidden="true"></i> Inquiry Us</a></li>
 					<li><a href="{% url 'contact-us' %}"><i class="fa fa-envelope-o" aria-hidden="true"></i> Contact Us</a></li>
 				</ul>
 			</div>
 		</nav>
 	</header>
-    <!-- Header section end -->
-    {% block content %}{% endblock %}
+	<!-- Header section end -->
+	<body>
+		<div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+			style="display: none;" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header text-center">
+						<h4 class="modal-title w-100 font-weight-bold">Write to us</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">×</span>
+						</button>
+					</div>
+					<form method="POST" class="contact-form">
+						{% csrf_token %}
+					<div class="modal-body mx-3">
+						<div class="md-form mb-5">
+							<i class="fas fa-user prefix grey-text"></i>
+							<input type="text" id="form34" name="name" maxlength="100" required class="form-control validate">
+							<label data-error="wrong" for="form34">Your name</label>
+						</div>
+
+						<div class="md-form mb-5">
+							<i class="fas fa-envelope prefix grey-text"></i>
+							<input type="email" id="form29" name="email_id" required class="form-control validate">
+							<label data-error="wrong" for="form29">Your email</label>
+						</div>
+
+						<div class="md-form mb-5">
+							<i class="fas fa-tag prefix grey-text"></i>
+							<input type="text" id="form312" name="mobile_number" maxlength="17" required class="form-control validate">
+							<label data-error="wrong" for="form312">Mobile Number</label>
+						</div>
+
+						<div class="md-form mb-5">
+							<i class="fas fa-tag prefix grey-text"></i>
+							<input type="text" id="form32" name="subject" maxlength="100" required class="form-control validate">
+							<label data-error="wrong" for="form32">Subject</label>
+						</div>
+
+						<div class="md-form">
+							<i class="fa fa-pencil prefix grey-text" aria-hidden="true"></i>
+							<textarea type="text" id="form8" name="message" maxlength="1000" class="md-textarea form-control" rows="4"></textarea>
+							<label data-error="wrong" for="form8">Message</label>
+						</div>
+					</div>
+
+					<div class="modal-footer d-flex justify-content-center">
+						<button type="submit" class="btn btn-unique waves-effect text-white">Send <i class="fa fa-paper-plane-o m1-1" aria-hidden="true"></i>
+						</button>
+					</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		{% block content %}{% endblock %}
+	</body>
     <!-- Footer section -->
 	<section class="footer-section">
 		<div class="container">
@@ -120,49 +184,6 @@
 						<img src="{% static 'img/cards.png' %}" alt="">
 					</div>
 				</div>
-				<!-- <div class="col-lg-3 col-sm-6">
-					<div class="footer-widget about-widget">
-						<h2>Questions</h2>
-						<ul>
-							<li><a href="">About Us</a></li>
-							<li><a href="">Track Orders</a></li>
-							<li><a href="">Returns</a></li>
-							<li><a href="">Jobs</a></li>
-							<li><a href="">Shipping</a></li>
-							<li><a href="">Blog</a></li>
-						</ul>
-						<ul>
-							<li><a href="">Partners</a></li>
-							<li><a href="">Bloggers</a></li>
-							<li><a href="">Support</a></li>
-							<li><a href="">Terms of Use</a></li>
-							<li><a href="">Press</a></li>
-						</ul>
-					</div>
-				</div> -->
-				<!-- <div class="col-lg-3 col-sm-6">
-					<div class="footer-widget about-widget">
-						<h2>Questions</h2>
-						<div class="fw-latest-post-widget">
-							<div class="lp-item">
-								<div class="lp-thumb set-bg" data-setbg="{% static 'img/blog-thumbs/1.jpg' %}"></div>
-								<div class="lp-content">
-									<h6>what shoes to wear</h6>
-									<span>Oct 21, 2018</span>
-									<a href="#" class="readmore">Read More</a>
-								</div>
-							</div>
-							<div class="lp-item">
-								<div class="lp-thumb set-bg" data-setbg="{% static 'img/blog-thumbs/2.jpg' %}"></div>
-								<div class="lp-content">
-									<h6>trends this year</h6>
-									<span>Oct 21, 2018</span>
-									<a href="#" class="readmore">Read More</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div> -->
 				<div class="col-lg-6 col-sm-12">
 					<div class="footer-widget contact-widget">
 						<h2>Company Info.</h2>
@@ -203,7 +224,7 @@
 						<a href="https://www.instagram.com/tapti_fashion/" class="instagram"><i class="fa fa-instagram"></i><span>instagram</span></a>
 					</div>
 					<div class="col-sm-4">
-						<a href="" class="facebook"><i class="fa fa-facebook"></i><span>facebook</span></a>
+						<a href="http://www.facebook.com/pages/category/Clothing-Company/Tapti-Fashion-Fabrics-297000043643763" class="facebook"><i class="fa fa-facebook"></i><span>facebook</span></a>
 					</div>
 					<div class="col-sm-4">
 						<a href="" class="twitter"><i class="fa fa-twitter"></i><span>twitter</span></a>
@@ -216,8 +237,6 @@
 		</div>
 	</section>
 	<!-- Footer section end -->
-
-
 
 	<!--====== Javascripts & Jquery ======-->
 	<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
